@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { getVideoLandingBgUrl } from '@/lib/publicVideoUrls'
+import { resolveLandingBgVideoUrl } from '@/lib/publicVideoUrls'
 import { BlurText } from './BlurText'
 
 function AnimatedBadge({ children }: { children: string }) {
@@ -48,7 +48,7 @@ const NAV = [
 
 export function VisionsHero() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const landingBgSrc = getVideoLandingBgUrl()
+  const landingBgSrc = resolveLandingBgVideoUrl()
 
   return (
     <section
@@ -56,21 +56,23 @@ export function VisionsHero() {
       style={{ fontFamily: 'var(--visions-font-body)' }}
     >
       <div
-        className="fixed inset-0 bg-[#0A0A0A]"
+        className="fixed inset-0 bg-black"
         style={{ zIndex: -2 }}
         aria-hidden
       />
-      <video
-        src={landingBgSrc}
-        muted
-        autoPlay
-        loop
-        playsInline
-        preload="metadata"
-        className="fixed inset-0 h-full w-full object-cover"
-        style={{ zIndex: -1 }}
-        aria-hidden
-      />
+      {landingBgSrc ? (
+        <video
+          src={landingBgSrc}
+          muted
+          autoPlay
+          loop
+          playsInline
+          preload="metadata"
+          className="fixed inset-0 h-full w-full object-cover"
+          style={{ zIndex: -1 }}
+          aria-hidden
+        />
+      ) : null}
 
       {/* Dark gradient overlay */}
       <div

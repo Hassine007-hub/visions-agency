@@ -1,7 +1,18 @@
 import { useRef, useState, useEffect } from 'react'
-import { getVideoDemoAeternaUrl, getVideoDemoSafranUrl } from '@/lib/publicVideoUrls'
+import { resolveDemoAeternaVideoUrl, resolveDemoSeventhVideoUrl } from '@/lib/publicVideoUrls'
 
-function buildProjects() {
+interface PortfolioProject {
+  id: 'aeterna' | 'seventh'
+  index: string
+  name: string
+  category: string
+  desc: string
+  tags: readonly string[]
+  /** Défini seulement si la variable Vercel correspondante est renseignée. */
+  video?: string
+}
+
+function buildProjects(): PortfolioProject[] {
   return [
     {
       id: 'aeterna',
@@ -10,38 +21,36 @@ function buildProjects() {
       category: 'Immobilier Luxe',
       desc: "Site immersif pour une marque immobilière haut de gamme — scroll vidéo 1080p, modales glassmorphism, animation cinématique.",
       tags: ['Next.js', 'R3F', 'GSAP', 'Supabase'],
-      video: getVideoDemoAeternaUrl(),
+      video: resolveDemoAeternaVideoUrl(),
     },
     {
-      id: 'safran',
+      id: 'seventh',
       index: '02',
-      name: 'SAFRAN',
+      name: 'SEVENTH',
       category: 'Club Privé',
       desc: "Expérience web 3D full-immersive pour un private members club — particules or, bokeh orbs, cursor magnétique, cartes tilt.",
       tags: ['React', 'Three.js', 'GLSL', 'R3F'],
-      video: getVideoDemoSafranUrl(),
+      video: resolveDemoSeventhVideoUrl(),
     },
-  ] as const
+  ]
 }
-
-type ProjectItem = ReturnType<typeof buildProjects>[number]
 
 const PROJECTS = buildProjects()
 
-function ProjectCard({ project }: { project: ProjectItem }) {
+function ProjectCard({ project }: { project: PortfolioProject }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [hovered, setHovered] = useState(false)
 
   useEffect(() => {
     const v = videoRef.current
-    if (!v) return
+    if (!v || !project.video) return
     if (hovered) {
       v.currentTime = 0
       v.play().catch(() => {})
     } else {
       v.pause()
     }
-  }, [hovered])
+  }, [hovered, project.video])
 
   return (
     <div
@@ -57,9 +66,10 @@ function ProjectCard({ project }: { project: ProjectItem }) {
           borderRadius: 'var(--visions-radius)',
           overflow: 'hidden',
           aspectRatio: '16/9',
-          background: '#0d0d0f',
+          background: '#000',
         }}
       >
+        {project.video ? (
         <video
           ref={videoRef}
           src={project.video}
@@ -78,6 +88,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
             opacity: hovered ? 1 : 0.85,
           }}
         />
+        ) : null}
 
         {/* Glass overlay on hover */}
         <div

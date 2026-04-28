@@ -1,6 +1,11 @@
 /**
- * Vidéos — uniquement les trois variables NEXT_PUBLIC_* définies dans `.env` / Vercel.
- * Voir `.env.example`.
+ * Vidéos agence VISIONS — uniquement trois variables alignées sur Vercel.
+ *
+ * Next.js : `process.env.NEXT_PUBLIC_*`
+ * Vite (ce projet) : `import.meta.env.NEXT_PUBLIC_*` — mêmes noms que sur Vercel.
+ *
+ * Aucune URL locale en secours : si une variable est vide, la valeur résolue est
+ * `undefined` ; les composants affichent un fond noir sans monter de `<video src="">`.
  */
 
 function trimUrl(value: string | undefined): string | undefined {
@@ -8,23 +13,17 @@ function trimUrl(value: string | undefined): string | undefined {
   return t || undefined
 }
 
-/** Fond landing (hero principal du site). */
-export function getVideoLandingBgUrl(): string {
-  return (
-    trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_LENDING_BG) ??
-    '/immersive-travel-technologique.mp4'
-  )
+/** Fond plein écran — landing / cinematic utilisant la même source. */
+export function resolveLandingBgVideoUrl(): string | undefined {
+  return trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_LENDING_BG)
 }
 
-/** Démo portfolio — projet immobilier luxe. */
-export function getVideoDemoAeternaUrl(): string {
-  return (
-    trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_DEMO_AERTENA) ??
-    '/aeterna-demo.mp4'
-  )
+/** Carte portfolio — immobilier luxe AETERNA. */
+export function resolveDemoAeternaVideoUrl(): string | undefined {
+  return trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_DEMO_AERTENA)
 }
 
-/** Démo portfolio — club privé (Safran). */
-export function getVideoDemoSafranUrl(): string {
-  return trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_DEMO_SAFRAN) ?? '/seventh-demo.mp4'
+/** Carte portfolio — club privé Seventh. */
+export function resolveDemoSeventhVideoUrl(): string | undefined {
+  return trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_DEMO_SEVENTH)
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getVideoLandingBgUrl } from '@/lib/publicVideoUrls'
+import { resolveLandingBgVideoUrl } from '@/lib/publicVideoUrls'
 import {
   Search,
   User,
@@ -17,7 +17,7 @@ const NAV_LINKS = ['Équipement', 'Vêtements', 'Sécurité', 'Guides', 'Expédi
 
 export function CinematicHero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const landingBgSrc = getVideoLandingBgUrl()
+  const landingBgSrc = resolveLandingBgVideoUrl()
 
   return (
     <div
@@ -27,17 +27,19 @@ export function CinematicHero() {
 
       {/* ── VIDEO BACKGROUND — même source que la landing ── */}
       <div className="fixed inset-0 bg-black" style={{ zIndex: -2 }} aria-hidden />
-      <video
-        src={landingBgSrc}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="fixed inset-0 h-full w-full object-cover"
-        style={{ zIndex: -1 }}
-        aria-hidden
-      />
+      {landingBgSrc ? (
+        <video
+          src={landingBgSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="fixed inset-0 h-full w-full object-cover"
+          style={{ zIndex: -1 }}
+          aria-hidden
+        />
+      ) : null}
 
       {/* ── BOTTOM BLUR OVERLAY (mask, no gradient darkening) ── */}
       <div
