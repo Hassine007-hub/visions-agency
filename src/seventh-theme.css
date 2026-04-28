@@ -1,0 +1,12 @@
+:root {
+  --seventh-bg:            #070509;
+  --seventh-violet:        #2a1040;
+  --seventh-gold:          #c4a86a;
+  --seventh-gold-dim:      rgba(196, 168, 106, 0.4);
+  --seventh-gold-ghost:    rgba(196, 168, 106, 0.12);
+  --seventh-parchment:     #f0ede8;
+  --seventh-parchment-dim: rgba(240, 237, 232, 0.5);
+  --seventh-glass-bg:      rgba(10, 7, 16, 0.72);
+  --seventh-font-display:  "Playfair Display", "Times New Roman", serif;
+  --seventh-font-ui:       "Inter", system-ui, sans-serif;
+}
