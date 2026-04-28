@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import { getVideoHeroUrl } from '@/lib/publicVideoUrls'
+import { getVideoLandingBgUrl } from '@/lib/publicVideoUrls'
 import { BlurText } from './BlurText'
 
 function AnimatedBadge({ children }: { children: string }) {
@@ -48,28 +48,27 @@ const NAV = [
 
 export function VisionsHero() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const videoHeroSrc = getVideoHeroUrl()
+  const landingBgSrc = getVideoLandingBgUrl()
 
   return (
     <section
-      className="relative h-screen w-full overflow-hidden flex flex-col"
-      style={{ background: '#0A0A0A', fontFamily: 'var(--visions-font-body)' }}
+      className="relative isolate h-screen w-full overflow-hidden flex flex-col"
+      style={{ fontFamily: 'var(--visions-font-body)' }}
     >
-      {/* Solid fallback until Blob/stream is ready */}
       <div
-        className="absolute inset-0 bg-[#0A0A0A]"
-        style={{ zIndex: 0 }}
+        className="fixed inset-0 bg-[#0A0A0A]"
+        style={{ zIndex: -2 }}
         aria-hidden
       />
       <video
-        src={videoHeroSrc}
-        autoPlay
+        src={landingBgSrc}
         muted
+        autoPlay
         loop
         playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ zIndex: 1 }}
+        preload="metadata"
+        className="fixed inset-0 h-full w-full object-cover"
+        style={{ zIndex: -1 }}
         aria-hidden
       />
 

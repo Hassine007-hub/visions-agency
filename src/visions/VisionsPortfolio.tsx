@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { getVideoSection2Url, getVideoSeventhUrl } from '@/lib/publicVideoUrls'
+import { getVideoDemoAeternaUrl, getVideoDemoSafranUrl } from '@/lib/publicVideoUrls'
 
 function buildProjects() {
   return [
@@ -10,16 +10,16 @@ function buildProjects() {
       category: 'Immobilier Luxe',
       desc: "Site immersif pour une marque immobilière haut de gamme — scroll vidéo 1080p, modales glassmorphism, animation cinématique.",
       tags: ['Next.js', 'R3F', 'GSAP', 'Supabase'],
-      video: getVideoSection2Url(),
+      video: getVideoDemoAeternaUrl(),
     },
     {
-      id: 'seventh',
+      id: 'safran',
       index: '02',
-      name: 'SEVENTH',
+      name: 'SAFRAN',
       category: 'Club Privé',
       desc: "Expérience web 3D full-immersive pour un private members club — particules or, bokeh orbs, cursor magnétique, cartes tilt.",
       tags: ['React', 'Three.js', 'GLSL', 'R3F'],
-      video: getVideoSeventhUrl(),
+      video: getVideoDemoSafranUrl(),
     },
   ] as const
 }
@@ -66,7 +66,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-hidden
           style={{
             width: '100%',
@@ -233,7 +233,7 @@ export function VisionsPortfolio() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             aria-hidden
             style={{ width: '220px', height: '220px', objectFit: 'contain', display: 'block', opacity: 0.45 }}
           />

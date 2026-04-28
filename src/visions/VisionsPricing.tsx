@@ -36,7 +36,7 @@ function LogoAnim({ size = 80 }: { size?: number }) {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         width={size}
         height={size}
         style={{ objectFit: 'contain', display: 'block', width: '100%', height: '100%' }}

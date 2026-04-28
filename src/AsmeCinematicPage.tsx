@@ -118,7 +118,7 @@ function CinematicVideoBackground() {
         autoPlay
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-hidden
       />
     </div>

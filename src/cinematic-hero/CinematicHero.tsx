@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getVideoBackgroundUrl } from '@/lib/publicVideoUrls'
+import { getVideoLandingBgUrl } from '@/lib/publicVideoUrls'
 import {
   Search,
   User,
@@ -17,22 +17,25 @@ const NAV_LINKS = ['Équipement', 'Vêtements', 'Sécurité', 'Guides', 'Expédi
 
 export function CinematicHero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const videoBackgroundSrc = getVideoBackgroundUrl()
+  const landingBgSrc = getVideoLandingBgUrl()
 
   return (
-    <div className="bg-black h-screen w-full overflow-hidden flex flex-col" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div
+      className="relative isolate bg-black h-screen w-full overflow-hidden flex flex-col"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
 
-      {/* ── VIDEO BACKGROUND ── */}
-      <div className="fixed inset-0 bg-black" style={{ zIndex: 0 }} aria-hidden />
+      {/* ── VIDEO BACKGROUND — même source que la landing ── */}
+      <div className="fixed inset-0 bg-black" style={{ zIndex: -2 }} aria-hidden />
       <video
-        src={videoBackgroundSrc}
+        src={landingBgSrc}
         autoPlay
         muted
         loop
         playsInline
-        preload="auto"
-        className="fixed inset-0 w-full h-full object-cover"
-        style={{ zIndex: 1 }}
+        preload="metadata"
+        className="fixed inset-0 h-full w-full object-cover"
+        style={{ zIndex: -1 }}
         aria-hidden
       />
 

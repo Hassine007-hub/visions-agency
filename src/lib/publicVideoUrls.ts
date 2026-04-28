@@ -1,7 +1,6 @@
 /**
- * Vercel Blob URLs — définies dans .env / dashboard Vercel.
- * Préfixe NEXT_PUBLIC_ exposé via import.meta.env (voir vite.config.ts envPrefix).
- * Chaîne de secours VITE_* pour compat avec les anciennes variables locales.
+ * Vidéos — uniquement les trois variables NEXT_PUBLIC_* définies dans `.env` / Vercel.
+ * Voir `.env.example`.
  */
 
 function trimUrl(value: string | undefined): string | undefined {
@@ -9,30 +8,23 @@ function trimUrl(value: string | undefined): string | undefined {
   return t || undefined
 }
 
-export function getVideoHeroUrl(): string {
+/** Fond landing (hero principal du site). */
+export function getVideoLandingBgUrl(): string {
   return (
-    trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_HERO) ??
-    trimUrl(import.meta.env.VITE_VIDEO_HERO) ??
+    trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_LENDING_BG) ??
     '/immersive-travel-technologique.mp4'
   )
 }
 
-export function getVideoBackgroundUrl(): string {
+/** Démo portfolio — projet immobilier luxe. */
+export function getVideoDemoAeternaUrl(): string {
   return (
-    trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_BACKGROUND) ??
-    '/montagne-neige.mp4'
-  )
-}
-
-/** Section portfolio (#portfolio) — première carte démo (AETERNA). */
-export function getVideoSection2Url(): string {
-  return (
-    trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_SECTION_2) ??
-    trimUrl(import.meta.env.VITE_VIDEO_AETERNA) ??
+    trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_DEMO_AERTENA) ??
     '/aeterna-demo.mp4'
   )
 }
 
-export function getVideoSeventhUrl(): string {
-  return trimUrl(import.meta.env.VITE_VIDEO_SEVENTH) ?? '/seventh-demo.mp4'
+/** Démo portfolio — club privé (Safran). */
+export function getVideoDemoSafranUrl(): string {
+  return trimUrl(import.meta.env.NEXT_PUBLIC_VIDEO_DEMO_SAFRAN) ?? '/seventh-demo.mp4'
 }
