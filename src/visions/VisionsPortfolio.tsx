@@ -1,27 +1,34 @@
 import { useRef, useState, useEffect } from 'react'
+import { getVideoSection2Url, getVideoSeventhUrl } from '@/lib/publicVideoUrls'
 
-const PROJECTS = [
-  {
-    id: 'aeterna',
-    index: '01',
-    name: 'AETERNA',
-    category: 'Immobilier Luxe',
-    desc: "Site immersif pour une marque immobilière haut de gamme — scroll vidéo 1080p, modales glassmorphism, animation cinématique.",
-    tags: ['Next.js', 'R3F', 'GSAP', 'Supabase'],
-    video: import.meta.env.VITE_VIDEO_AETERNA || '/aeterna-demo.mp4',
-  },
-  {
-    id: 'seventh',
-    index: '02',
-    name: 'SEVENTH',
-    category: 'Club Privé',
-    desc: "Expérience web 3D full-immersive pour un private members club — particules or, bokeh orbs, cursor magnétique, cartes tilt.",
-    tags: ['React', 'Three.js', 'GLSL', 'R3F'],
-    video: import.meta.env.VITE_VIDEO_SEVENTH || '/seventh-demo.mp4',
-  },
-]
+function buildProjects() {
+  return [
+    {
+      id: 'aeterna',
+      index: '01',
+      name: 'AETERNA',
+      category: 'Immobilier Luxe',
+      desc: "Site immersif pour une marque immobilière haut de gamme — scroll vidéo 1080p, modales glassmorphism, animation cinématique.",
+      tags: ['Next.js', 'R3F', 'GSAP', 'Supabase'],
+      video: getVideoSection2Url(),
+    },
+    {
+      id: 'seventh',
+      index: '02',
+      name: 'SEVENTH',
+      category: 'Club Privé',
+      desc: "Expérience web 3D full-immersive pour un private members club — particules or, bokeh orbs, cursor magnétique, cartes tilt.",
+      tags: ['React', 'Three.js', 'GLSL', 'R3F'],
+      video: getVideoSeventhUrl(),
+    },
+  ] as const
+}
 
-function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
+type ProjectItem = ReturnType<typeof buildProjects>[number]
+
+const PROJECTS = buildProjects()
+
+function ProjectCard({ project }: { project: ProjectItem }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [hovered, setHovered] = useState(false)
 
@@ -59,7 +66,8 @@ function ProjectCard({ project }: { project: typeof PROJECTS[0] }) {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
+          aria-hidden
           style={{
             width: '100%',
             height: '100%',
@@ -218,10 +226,15 @@ export function VisionsPortfolio() {
         </div>
 
         {/* Watermark logo centré */}
-        <div className="visions-reveal" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem' }}>
+        <div className="visions-reveal" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', position: 'relative', background: '#0d0d0f', borderRadius: '50%' }}>
           <video
             src="/visions-logo-anim.mp4"
-            autoPlay muted loop playsInline
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden
             style={{ width: '220px', height: '220px', objectFit: 'contain', display: 'block', opacity: 0.45 }}
           />
         </div>

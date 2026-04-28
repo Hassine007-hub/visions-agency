@@ -20,13 +20,28 @@ const Star = () => (
 
 function LogoAnim({ size = 80 }: { size?: number }) {
   return (
-    <video
-      src="/visions-logo-anim.mp4"
-      autoPlay muted loop playsInline
-      width={size}
-      height={size}
-      style={{ objectFit: 'contain', display: 'block' }}
-    />
+    <div
+      style={{
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        background: '#0d0d0f',
+        flexShrink: 0,
+      }}
+      aria-hidden
+    >
+      <video
+        src="/visions-logo-anim.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        width={size}
+        height={size}
+        style={{ objectFit: 'contain', display: 'block', width: '100%', height: '100%' }}
+      />
+    </div>
   )
 }
 

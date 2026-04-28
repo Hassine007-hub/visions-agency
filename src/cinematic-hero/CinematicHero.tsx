@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getVideoBackgroundUrl } from '@/lib/publicVideoUrls'
 import {
   Search,
   User,
@@ -12,32 +13,34 @@ import {
   Calendar,
 } from 'lucide-react'
 
-const VIDEO_URL = '/montagne-neige.mp4'
-
 const NAV_LINKS = ['Équipement', 'Vêtements', 'Sécurité', 'Guides', 'Expéditions']
 
 export function CinematicHero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const videoBackgroundSrc = getVideoBackgroundUrl()
 
   return (
     <div className="bg-black h-screen w-full overflow-hidden flex flex-col" style={{ fontFamily: "'Inter', sans-serif" }}>
 
       {/* ── VIDEO BACKGROUND ── */}
+      <div className="fixed inset-0 bg-black" style={{ zIndex: 0 }} aria-hidden />
       <video
-        src={VIDEO_URL}
+        src={videoBackgroundSrc}
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         className="fixed inset-0 w-full h-full object-cover"
-        style={{ zIndex: 0 }}
+        style={{ zIndex: 1 }}
+        aria-hidden
       />
 
       {/* ── BOTTOM BLUR OVERLAY (mask, no gradient darkening) ── */}
       <div
         className="fixed inset-0 pointer-events-none backdrop-blur-xl"
         style={{
-          zIndex: 1,
+          zIndex: 2,
           WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 45%)',
           maskImage: 'linear-gradient(to top, black 0%, transparent 45%)',
         }}
