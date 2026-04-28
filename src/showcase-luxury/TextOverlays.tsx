@@ -1,10 +1,9 @@
 'use client'
-import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { brand, products } from './brand'
 
 interface TextOverlaysProps {
-  containerRef: React.RefObject<HTMLDivElement>
+  containerRef: React.RefObject<HTMLDivElement | null>
 }
 
 function ProductLabel({
@@ -14,7 +13,7 @@ function ProductLabel({
 }: {
   product: typeof products[number]
   index: number
-  containerRef: React.RefObject<HTMLDivElement>
+  containerRef: React.RefObject<HTMLDivElement | null>
 }) {
   // Mapping scroll → opacité par produit
   // Parfum : 0→0.08 fade-in, 0.08→0.20 visible, 0.20→0.30 fade-out
@@ -85,7 +84,7 @@ function ProductLabel({
   )
 }
 
-function CTAOverlay({ containerRef }: { containerRef: React.RefObject<HTMLDivElement> }) {
+function CTAOverlay({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
