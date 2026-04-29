@@ -238,7 +238,7 @@ export function VisionsPortfolio() {
         </div>
 
         {/* Watermark logo centré */}
-        <div className="visions-reveal" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', position: 'relative', background: '#000', borderRadius: '50%' }}>
+        <div className="visions-reveal" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', position: 'relative' }}>
           <LogoVisionsAnimVideo size={220} opacity={0.45} />
         </div>
 

@@ -42,7 +42,7 @@ export function LogoVisionsStill({ width, height, className, loading = 'lazy' }:
 
 type LogoAnimProps = {
   size: number
-  /** Opacité du média vidéo (le fond du cercle reste opaque). */
+  /** Opacité du média vidéo. */
   opacity?: number
 }
 
@@ -53,8 +53,6 @@ export function LogoVisionsAnimVideo({ size, opacity = 1 }: LogoAnimProps) {
       style={{
         width: size,
         height: size,
-        borderRadius: '50%',
-        background: '#000',
         flexShrink: 0,
       }}
       aria-hidden

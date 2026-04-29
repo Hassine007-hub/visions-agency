@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { resolveLandingBgVideoUrl } from '@/lib/publicVideoUrls'
-import { hasLogoVisionsStillAsset } from '@/lib/publicLogoUrls'
-import { LogoVisionsStill } from '@/visions/LogoVisionsMedia'
 import { BlurText } from './BlurText'
 
 function AnimatedBadge({ children }: { children: string }) {
@@ -96,17 +94,7 @@ export function VisionsHero() {
       />
 
       {/* Navbar */}
-      <nav className="relative flex items-center justify-center px-6 md:px-12 py-6 min-h-[3.25rem]" style={{ zIndex: 50 }}>
-        {hasLogoVisionsStillAsset() ? (
-          <a
-            href="#"
-            className="absolute left-6 md:left-12 top-1/2 z-[51] -translate-y-1/2 animate-blur-fade-up opacity-95 transition-opacity hover:opacity-100"
-            style={{ animationDelay: '90ms' }}
-            aria-label="VISIONS — accueil"
-          >
-            <LogoVisionsStill width={44} height={44} loading="eager" />
-          </a>
-        ) : null}
+      <nav className="relative flex items-center justify-center px-6 md:px-12 py-6" style={{ zIndex: 50 }}>
         <div className="hidden lg:flex items-center gap-8">
           {NAV.map(({ label, href }, i) => (
             <a

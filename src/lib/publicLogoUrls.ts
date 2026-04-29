@@ -17,7 +17,3 @@ export function resolveLogoVisionsUrl(): string | undefined {
 export function resolveLogoVisionsVideoUrl(): string | undefined {
   return trimUrl(import.meta.env.NEXT_PUBLIC_LOGO_VISIONS_VIDEO)
 }
-
-export function hasLogoVisionsStillAsset(): boolean {
-  return Boolean(trimUrl(import.meta.env.NEXT_PUBLIC_LOGO_VISIONS))
-}
