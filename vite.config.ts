@@ -14,6 +14,17 @@ export default defineConfig({
         main:    fileURLToPath(new URL('index.html',   import.meta.url)),
         seventh: fileURLToPath(new URL('seventh.html', import.meta.url)),
       },
+      output: {
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+          if (id.includes('three') || id.includes('@react-three') || id.includes('postprocessing')) {
+            return 'three-vendor'
+          }
+          if (id.includes('react-dom') || id.includes('react/')) {
+            return 'react-vendor'
+          }
+        },
+      },
     },
   },
 })
