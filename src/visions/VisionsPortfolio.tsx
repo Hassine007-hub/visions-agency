@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { resolveDemoAeternaVideoUrl, resolveDemoSeventhVideoUrl } from '@/lib/publicVideoUrls'
+import { LogoVisionsAnimVideo } from '@/visions/LogoVisionsMedia'
 
 interface PortfolioProject {
   id: 'aeterna' | 'seventh'
@@ -237,17 +238,8 @@ export function VisionsPortfolio() {
         </div>
 
         {/* Watermark logo centré */}
-        <div className="visions-reveal" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', position: 'relative', background: '#0d0d0f', borderRadius: '50%' }}>
-          <video
-            src="/visions-logo-anim.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden
-            style={{ width: '220px', height: '220px', objectFit: 'contain', display: 'block', opacity: 0.45 }}
-          />
+        <div className="visions-reveal" style={{ display: 'flex', justifyContent: 'center', marginBottom: '3rem', position: 'relative', background: '#000', borderRadius: '50%' }}>
+          <LogoVisionsAnimVideo size={220} opacity={0.45} />
         </div>
 
         {/* Grid */}

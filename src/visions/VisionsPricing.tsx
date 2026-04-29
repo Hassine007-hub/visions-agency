@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+import { LogoVisionsAnimVideo, LogoVisionsStill } from '@/visions/LogoVisionsMedia'
+
 /* ── Icons ── */
 const Check = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
@@ -17,33 +19,6 @@ const Star = () => (
     <polygon points="5,1 6.2,4 9.5,4 6.9,6.2 7.8,9.5 5,7.5 2.2,9.5 3.1,6.2 0.5,4 3.8,4" />
   </svg>
 )
-
-function LogoAnim({ size = 80 }: { size?: number }) {
-  return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        borderRadius: '50%',
-        background: '#0d0d0f',
-        flexShrink: 0,
-      }}
-      aria-hidden
-    >
-      <video
-        src="/visions-logo-anim.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        width={size}
-        height={size}
-        style={{ objectFit: 'contain', display: 'block', width: '100%', height: '100%' }}
-      />
-    </div>
-  )
-}
 
 function HRule() {
   return <div className="visions-h-rule" />
@@ -302,7 +277,7 @@ export function VisionsPricing() {
       <header style={{ padding: '4.5rem 0 2.5rem', textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <div className="max-w-5xl mx-auto px-6">
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.75rem', marginBottom: '3rem' }}>
-            <LogoAnim size={160} />
+            <LogoVisionsAnimVideo size={160} />
           </div>
           <h2 style={{ fontFamily: 'var(--visions-font-head)', fontStyle: 'italic', fontSize: 'clamp(2.8rem, 6vw, 5rem)', fontWeight: 400, lineHeight: .92, letterSpacing: '-.03em', color: 'var(--visions-fg)', marginBottom: '1.25rem' }}>
             Ce que vous <span style={{ color: 'var(--visions-gold)' }}>investissez</span>
@@ -481,13 +456,7 @@ export function VisionsPricing() {
       <footer style={{ padding: '4rem 0 3rem', textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <div className="max-w-5xl mx-auto px-6">
           <div style={{ marginBottom: '1.25rem', display: 'flex', justifyContent: 'center' }}>
-            <img
-              src="/visions-logo.png"
-              alt="VISIONS"
-              width={180}
-              height={180}
-              style={{ objectFit: 'contain', display: 'block' }}
-            />
+            <LogoVisionsStill width={180} height={180} loading="lazy" />
           </div>
           <p style={{ fontSize: '.83rem', color: 'var(--visions-fg-subtle)', fontWeight: 300 }}>
             Qualité d'exécution · Vélocité d'une équipe tech · Interlocuteur unique
